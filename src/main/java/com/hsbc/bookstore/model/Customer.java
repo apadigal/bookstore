@@ -1,23 +1,27 @@
 package com.hsbc.bookstore.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.hateoas.Identifiable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
- * Created by swashtechltd on 31/01/2018.
+ * Created by IntelliJ IDEA.
+ * $Revision: #1 $
+ *
+ * @Author: apadigal $
+ * $Date: 31/01/2018 $
+ * Created Date: 31/01/2018 08:34
  */
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer implements Identifiable<Long> {
+@Builder
+public class Customer{
 
     @Id
     @GeneratedValue
@@ -33,7 +37,7 @@ public class Customer implements Identifiable<Long> {
     @Column private String postalCode;
     @Column private String phone;
 
-
-
+    @OneToMany(mappedBy = "customer")
+    private List<CustomerOrder> customerOrders;
 
 }

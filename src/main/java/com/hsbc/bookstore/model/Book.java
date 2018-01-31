@@ -1,27 +1,38 @@
+/*
+ * SIEE - PMDB Management
+ *
+ * Book.java
+ *
+ * 2017 SIEE. All Rights Reserved
+ */
+// ---- Package ---------------------------------------------------------------
 package com.hsbc.bookstore.model;
+// ---- Import Statements -----------------------------------------------------
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.hateoas.Identifiable;
 
 import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by swashtechltd on 30/01/2018.
+ * Created by IntelliJ IDEA.
+ * $Revision: #1 $
+ *
+ * @Author: apadigal $
+ * $Date: 31/01/2018 $
+ * Created Date: 31/01/2018 08:34
  */
-
 @Entity
-@Data
+@Getter
+@Setter
+@ToString(exclude = {"author","genre"})
+@EqualsAndHashCode(exclude = {"author","genre"})
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class Book implements Identifiable<Long> {
+public class Book{
 
     @Id
     @GeneratedValue
@@ -57,9 +68,5 @@ public class Book implements Identifiable<Long> {
     @ManyToOne
     @JoinColumn(name="genre_id", nullable = false)
     private Genre genre;
-
-    @ManyToOne
-    @JoinColumn(name="publisher_id")
-    private Publisher publisher;
 
 }
