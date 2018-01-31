@@ -58,5 +58,8 @@ public class Book implements Identifiable<Long> {
     @JoinColumn(name="genre_id", nullable = false)
     private Genre genre;
 
+    @ManyToOne
+    @JoinColumn(name="publisher_id")
+    private Publisher publisher;
 
 }
