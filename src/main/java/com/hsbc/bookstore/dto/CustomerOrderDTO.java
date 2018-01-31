@@ -1,4 +1,4 @@
-package com.hsbc.bookstore.model;
+package com.hsbc.bookstore.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,20 +17,17 @@ import java.util.List;
  * $Date: 31/01/2018 $
  * Created Date: 31/01/2018 08:34
  */
-@Entity
+
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Genre{
-    @Id
-    @GeneratedValue
+@Builder
+public class CustomerOrderDTO {
+
     private Long id;
-
-    @Column
-    private String description;
-
+    private Date createdDate;
+    private Date updatedDate;
     @JsonIgnore
-    @OneToMany(mappedBy = "genre")
-    private List<Book> books;
+    private CustomerDTO customer;
+    private List<OrderItemDTO> orderItems;
 }

@@ -2,5 +2,13 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hsbc/bookstore/controller/AbstractController.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hsbc/bookstore/controller/ApplicationErrorController.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hsbc/bookstore/dto/AuthorDTO.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hsbc/bookstore/dto/GenreDTO.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/hsbc/bookstore/exception/ErrorResponse.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/hsbc/bookstore/service/BookStoreServiceTest.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/hsbc/bookstore/service/CustomerServiceTest.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/test/java/com/hsbc/bookstore/service/OrderServiceTest.java" charset="windows-1252" />
   </component>
 </project>

@@ -15,12 +15,8 @@
  */
 package com.hsbc.bookstore.config;
 
-import com.hsbc.bookstore.model.Author;
-import com.hsbc.bookstore.model.Book;
-import com.hsbc.bookstore.model.Genre;
-import com.hsbc.bookstore.repository.AuthorRepository;
-import com.hsbc.bookstore.repository.BookRepository;
-import com.hsbc.bookstore.repository.GenreRepository;
+import com.hsbc.bookstore.model.*;
+import com.hsbc.bookstore.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -34,16 +30,43 @@ import java.util.Arrays;
 class BookStroreDatabaseLoader {
 
 	@Bean
-    CommandLineRunner initDatabase(BookRepository bookRepository, AuthorRepository authorRepository, GenreRepository genreRepository) {
+    CommandLineRunner initDatabase(BookRepository bookRepository,
+								   AuthorRepository authorRepository,
+								   GenreRepository genreRepository,
+								   CustomerRepository customerRepository,
+								   CustomerOrderRepository customerOrderRepository) {
 		return args -> {
 			Genre genre = genreRepository.save( Genre.builder().description("action").build());
 			Author author = authorRepository.save(Author.builder().firstName("Anand").lastName("Padigala").build());
 
-			Book book1 = bookRepository.save(Book.builder().author(author).genre(genre).title("Book:book1").isbn("100001").price(10.5).build());
-			Book book2 = bookRepository.save(Book.builder().author(author).genre(genre).title("Book:book2").isbn("200001").price(12.5).build());
+			genreRepository.save(genre);
+			authorRepository.save(author);
+			Book book1 = bookRepository.save(Book.builder().author(author).genre(genre).title("Book1:book1").isbn("100001").price(10.5).build());
+			Book book2 = bookRepository.save(Book.builder().author(author).genre(genre).title("Book1:book2").isbn("200001").price(12.5).build());
 
 			genre.setBooks(Arrays.asList(book1, book2));
 			genreRepository.save(genre);
+
+			Customer customer = customerRepository.save(Customer.builder().firstName("anand")
+					.lastName("padigala")
+					.addressLine1("add")
+					.addressLine2("line")
+					.city("london")
+					.country("uk")
+					.postalCode("W1F999")
+					.phone("888888").build());
+
+			customerRepository.save(customer);
+
+
+			OrderItem orderItem1 = OrderItem.builder().book(book1).quantity(10).build();
+			OrderItem orderItem2 = OrderItem.builder().book(book2).quantity(2).build();
+
+			CustomerOrder customerOrder = CustomerOrder.builder().customer(customer).orderItems(Arrays.asList(orderItem1, orderItem2)).build();
+			orderItem1.setCustomerOrder(customerOrder);
+			orderItem2.setCustomerOrder(customerOrder);
+			customerOrderRepository.save(customerOrder);
+
 
 		};
 	}

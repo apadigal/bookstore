@@ -1,13 +1,9 @@
-package com.hsbc.bookstore.model;
+package com.hsbc.bookstore.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -17,20 +13,16 @@ import java.util.List;
  * $Date: 31/01/2018 $
  * Created Date: 31/01/2018 08:34
  */
-@Entity
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Genre{
-    @Id
-    @GeneratedValue
+public class GenreDTO {
+
     private Long id;
-
-    @Column
     private String description;
+//    @JsonIgnore
+//    private List<BookDTO> books;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "genre")
-    private List<Book> books;
 }

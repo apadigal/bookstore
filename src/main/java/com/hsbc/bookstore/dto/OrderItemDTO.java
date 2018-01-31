@@ -1,12 +1,12 @@
 /*
  * SIEE - PMDB Management
  *
- * Author.java
+ * OrderItem.java
  *
  * 2017 SIEE. All Rights Reserved
  */
 // ---- Package ---------------------------------------------------------------
-package com.hsbc.bookstore.model;
+package com.hsbc.bookstore.dto;
 // ---- Import Statements -----------------------------------------------------
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,9 +14,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
-import java.util.Set;
 
 /**
  * Created by IntelliJ IDEA.
@@ -26,26 +23,15 @@ import java.util.Set;
  * $Date: 31/01/2018 $
  * Created Date: 31/01/2018 08:32
  */
-@Entity
+
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class Author{
-
-    @Id
-    @GeneratedValue
-    private  Long id;
-
-    @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
-
+@Builder
+public class OrderItemDTO {
+    private Long id;
+    private Integer quantity;
+    private BookDTO book;
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "author")
-    private Set<Book> books;
-
+    private CustomerOrderDTO customerOrder;
 }
